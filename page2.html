@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queimadas ML - Escolha uma Ação</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #1a1a1a;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        #logo {
+            max-height: 70px;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .options-container {
+            background-color: #1f1f1f;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .button-group a {
+            display: block;
+            padding: 1rem;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .button-group a:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #1a1a1a;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+<header onclick="location.href='index.html';">
+    <img id="logo" src="logo.png" alt="Logo da Empresa">
+</header>
+
+<main>
+    <div class="options-container">
+        <h1>Olá Matheus Coffers, escolha uma Ação</h1>
+        <div class="button-group">
+            <a href="page3.html">Subir Nova Base</a>
+            <a href="page4.html">Visualizar Relatórios</a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    &copy; 2025 Sua Empresa. Todos os direitos reservados.
+</footer>
+
+</body>
+</html>

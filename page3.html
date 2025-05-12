@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queimadas ML - Upload e Predição</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #1a1a1a;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #logo {
+            max-height: 70px;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .upload-container {
+            background-color: #1f1f1f;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .custom-file-upload {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            background-color: #333;
+            border: 2px dashed #555;
+            border-radius: 8px;
+            color: #aaa;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+            text-align: center;
+        }
+        .custom-file-upload:hover {
+            background-color: #444;
+            border-color: #777;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        button {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1rem;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover:not(:disabled) {
+            background-color: #0056b3;
+            transform: scale(1.02);
+        }
+        .report-button {
+            margin-top: 2rem;
+            background-color: grey;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 1rem;
+            width: 100%;
+            cursor: not-allowed;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .report-button.active {
+            background-color: #28a745;
+            cursor: pointer;
+        }
+        .report-button.active:hover {
+            background-color: #218838;
+            transform: scale(1.02);
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #1a1a1a;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header onclick="location.href='page2.html';">
+        <img id="logo" src="logo.png" alt="Logo da Empresa">
+    </header>
+
+<main>
+    <div class="upload-container">
+        <h1>Subir Base para Predição</h1>
+        <form id="uploadForm" action="#" method="post" enctype="multipart/form-data">
+            <label class="custom-file-upload">
+                <input type="file" id="csvfile" name="csvfile" accept=".csv" required>
+                Escolher arquivo CSV
+            </label>
+            <button type="button" id="predictButton">Rodar Predição</button>
+        </form>
+        <button id="reportButton" class="report-button" disabled>Baixar Relatório</button>
+    </div>
+</main>
+
+<footer>
+    &copy; 2025 Sua Empresa. Todos os direitos reservados.
+</footer>
+
+<script>
+    const predictButton = document.getElementById('predictButton');
+    const reportButton = document.getElementById('reportButton');
+    const csvfile = document.getElementById('csvfile');
+
+    predictButton.addEventListener('click', () => {
+        if (csvfile.files.length === 0) {
+            alert('Por favor, selecione um arquivo CSV primeiro.');
+            return;
+        }
+
+        predictButton.disabled = true;
+        predictButton.textContent = 'Rodando...';
+
+        setTimeout(() => {
+            predictButton.disabled = false;
+            predictButton.textContent = 'Rodar Predição';
+            reportButton.disabled = false;
+            reportButton.classList.add('active');
+        }, 5000);
+    });
+</script>
+
+</body>
+</html>
