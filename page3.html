@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Queimadas ML - Upload e Predição</title>
     <style>
         body {
@@ -75,6 +75,11 @@
         input[type="file"] {
             display: none;
         }
+        .icon-csv {
+            fill: #aaa;
+            width: 50px;
+            height: 50px;
+        }
         button {
             width: 100%;
             padding: 1rem;
@@ -92,52 +97,67 @@
             background-color: #0056b3;
             transform: scale(1.02);
         }
-        .report-button {
-            margin-top: 2rem;
-            background-color: grey;
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: bold;
-            padding: 1rem;
-            width: 100%;
-            cursor: not-allowed;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-        .report-button.active {
-            background-color: #28a745;
-            cursor: pointer;
-        }
-        .report-button.active:hover {
-            background-color: #218838;
-            transform: scale(1.02);
-        }
         footer {
             text-align: center;
             padding: 1rem;
             background-color: #1a1a1a;
             font-size: 0.8rem;
         }
+        /* Timeline styles */
+        .timeline {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+        .timeline-step {
+            width: 30px;
+            height: 30px;
+            background-color: #555;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #222;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: default;
+            user-select: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .timeline-step.active {
+            background-color: #007bff;
+            color: white;
+        }
     </style>
 </head>
 <body>
 
-    <header onclick="location.href='page2.html';">
-        <img id="logo" src="logo.png" alt="Logo da Empresa">
-    </header>
+<header onclick="location.href='page2.html';">
+    <img id="logo" src="logo.png" alt="Logo da Empresa" />
+</header>
 
 <main>
     <div class="upload-container">
+        <!-- Timeline com 3 passos -->
+        <div class="timeline">
+            <div class="timeline-step active" title="Passo 1">1</div>
+            <div class="timeline-step" title="Passo 2">2</div>
+            <div class="timeline-step" title="Passo 3">3</div>
+        </div>
+
         <h1>Subir Base para Predição</h1>
+
         <form id="uploadForm" action="#" method="post" enctype="multipart/form-data">
-            <label class="custom-file-upload">
-                <input type="file" id="csvfile" name="csvfile" accept=".csv" required>
-                Escolher arquivo CSV
+            <label class="custom-file-upload" id="fileLabel" for="csvfile">
+                <span id="label-text">Escolher arquivo CSV</span>
+                <!-- Ícone PNG, oculto inicialmente -->
+                <img id="csv-icon" src="csv.png" alt="Ícone CSV" style="display:none; width:50px; height:50px;" />
             </label>
-            <button type="button" id="predictButton">Rodar Predição</button>
+            <input type="file" id="csvfile" name="csvfile" accept=".csv" required />
+
+            <button type="button" id="nextButton" onclick="window.location.href='page3-1.html'">Próximo</button>
         </form>
-        <button id="reportButton" class="report-button" disabled>Baixar Relatório</button>
     </div>
 </main>
 
@@ -146,25 +166,20 @@
 </footer>
 
 <script>
-    const predictButton = document.getElementById('predictButton');
-    const reportButton = document.getElementById('reportButton');
     const csvfile = document.getElementById('csvfile');
+    const labelText = document.getElementById('label-text');
+    const csvIcon = document.getElementById('csv-icon');
 
-    predictButton.addEventListener('click', () => {
-        if (csvfile.files.length === 0) {
-            alert('Por favor, selecione um arquivo CSV primeiro.');
-            return;
+    csvfile.addEventListener('change', () => {
+        if (csvfile.files.length > 0) {
+            // Oculta o texto e mostra o ícone
+            labelText.style.display = 'none';
+            csvIcon.style.display = 'inline-block';
+        } else {
+            // Volta ao texto se desmarcar
+            labelText.style.display = 'inline';
+            csvIcon.style.display = 'none';
         }
-
-        predictButton.disabled = true;
-        predictButton.textContent = 'Rodando...';
-
-        setTimeout(() => {
-            predictButton.disabled = false;
-            predictButton.textContent = 'Rodar Predição';
-            reportButton.disabled = false;
-            reportButton.classList.add('active');
-        }, 5000);
     });
 </script>
 
