@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Queimadas ML - Realizar Previsão</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #1a1a1a;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #logo {
+            max-height: 70px;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .upload-container {
+            background-color: #1f1f1f;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        button {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        #predictButton {
+            background-color: #007bff;
+        }
+        #predictButton:hover:not(:disabled) {
+            background-color: #0056b3;
+            transform: scale(1.02);
+        }
+        #nextButton {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+        #nextButton.active {
+            background-color: #28a745;
+            cursor: pointer;
+        }
+        #nextButton.active:hover {
+            background-color: #218838;
+            transform: scale(1.02);
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #1a1a1a;
+            font-size: 0.8rem;
+        }
+        /* Timeline styles */
+        .timeline {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+        .timeline-step {
+            width: 30px;
+            height: 30px;
+            background-color: #555;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #222;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: default;
+            user-select: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .timeline-step.active {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header onclick="location.href='page2.html';">
+    <img id="logo" src="logo.png" alt="Logo da Empresa" />
+</header>
+
+<main>
+    <div class="upload-container">
+        <!-- Timeline com 3 passos, passo 2 ativo -->
+        <div class="timeline">
+            <div class="timeline-step active">1</div>
+            <div class="timeline-step active" title="Passo 2">2</div>
+            <div class="timeline-step" title="Passo 3">3</div>
+        </div>
+
+        <h1>Realizar Previsão</h1>
+
+        <button id="predictButton" type="button">Realizar Previsão</button>
+        <button id="nextButton" type="button" disabled>Próximo</button>
+    </div>
+</main>
+
+<footer>
+    &copy; 2025 Sua Empresa. Todos os direitos reservados.
+</footer>
+
+<script>
+    const predictButton = document.getElementById('predictButton');
+    const nextButton = document.getElementById('nextButton');
+
+    predictButton.addEventListener('click', () => {
+        // Desabilita o botão e muda o texto
+        predictButton.disabled = true;
+        predictButton.textContent = 'Prevendo...';
+
+        // Simula previsão por 5 segundos
+        setTimeout(() => {
+            predictButton.disabled = false;
+            predictButton.textContent = 'Realizar Previsão';
+
+            // Ativa o botão próximo
+            nextButton.disabled = false;
+            nextButton.classList.add('active');
+        }, 5000);
+    });
+
+    nextButton.addEventListener('click', () => {
+        if (!nextButton.disabled) {
+            // Aqui pode ir para a página 3 da jornada
+            window.location.href = 'page3-2.html';
+        }
+    });
+</script>
+
+</body>
+</html>
